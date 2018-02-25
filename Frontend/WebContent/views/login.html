@@ -1,6 +1,5 @@
 <html>
-<span style="color:red" ng-if="error.code==5">{{error.message}}</span>
-<span>{{message}}</span>
+
 <style>
 .error {
         color: red; font-weight: bold;
@@ -14,7 +13,7 @@ body, html
 
 .bg {
     
-    background-image: url("resources/images/.jpg");    
+    background-image: url("resources/images/login.jpg");    
     height: 100%;     
     background-position: center;
     background-repeat: no-repeat;
@@ -31,6 +30,8 @@ body, html
 <h2><font color="white">User Login</font></h2>
   
   <form >  
+   <span style="color:red" ng-if="error.code==5">{{error.message}}</span>
+   <span style="color:red"  ng-if="error.code==4" ng-show="message!=undefined">{{message}}</span>
    
     <div class="form-group">
     <div style="margin-bottom: 10px" class="input-group">
@@ -51,8 +52,9 @@ body, html
 
     
   </form>
+  
 </div>
 </div>
-
+</div>
 </body>
 </html>

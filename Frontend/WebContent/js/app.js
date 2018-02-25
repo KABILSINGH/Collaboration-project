@@ -12,25 +12,34 @@ app.config(function($routeProvider){
 		templateUrl:'views/login.html',
 		controller:'UserController'
 	} )
+	.when('/edituserprofile',{
+		templateUrl:'views/edituserprofile.html',
+		controller:'UserController'
+	} )
 	.otherwise({
 		templateUrl:'views/home.html'
 	})
 } )
 app.run(function($location,$rootScope,$cookieStore,UserService){
-	if($rootScope.loggedInUser==undefined)
-		$rootScope.loggedInUser=$cookieStore.get('currentuser')
-		$rootScope.logout=function(){
+	
+	if($rootScope.currentuser==undefined)
+	    $rootScope.currentuser=$cookieStore.get('currentuser')
+	    
+	 $rootScope.logout=function()
+	{
+		console.log("logout function")
+		delete $rootScope.loggedInUser;
+		$cookieStore.remove('currentuser')
 		UserService.logout().then(
 				function(response){
-			delete $rootScope.loggedInUser;
-			$cookieStore.remove('currentuser')
-			$rootScope.message="Successfully loggedout.."
+					console.log("Loggout successfully..")
+			
+			$rootScope.message="Successfully Loggedout.."
 				$location.path('/login');
 		},function(response){
-			$rootScope.error=response.data
-			if(response.status=401)
-				$location.path('/login')
-		}
-				)
+			console.log(response.status)
+			
+		})
+
 	}
 })

@@ -1,5 +1,5 @@
 <html>
-<span style="color:red" ng-if="error.code==1">{{error.message}}</span>
+
 <style>
 body {
     padding-top:50px;
@@ -34,17 +34,17 @@ span.req {
 }
 
 </style>
-
-<body>
 <div class="bg">
+<body>
+
 <form>
 <div class="container">
 	<div class="row">
         <div class="col-md-6">
             <form action="" method="post" id="fileForm" role="form">
-            <fieldset><legend class="text-center"><font color="white">Valid information is required to register: </font></legend>
+            <fieldset><legend class="text-center"><font color="blue">Valid information is required to register: </font></legend>
                             
-         
+    <span style="color:red" ng-if="error.code==1">{{error.message}}</span>     
            
             <div class="form-group"> 	 
                 <label for="firstname"><span class="req">* </span> First name: </label>

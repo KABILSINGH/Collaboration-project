@@ -8,4 +8,5 @@ boolean isEmailUnique(String email);
 User login(User user);
 void update(User validUser);
 User getUser(String email);
+Void updateUser(User user);
 }

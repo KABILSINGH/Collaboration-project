@@ -51,6 +51,12 @@ private SessionFactory sessionFactory;
 		User user=(User)session.get(User.class, email);
 		return user;
 	}
+	@Override
+	public Void updateUser(User user) {
+		Session session=sessionFactory.getCurrentSession();
+		session.update(user);
+		return null;
+	}
 	
 	
 

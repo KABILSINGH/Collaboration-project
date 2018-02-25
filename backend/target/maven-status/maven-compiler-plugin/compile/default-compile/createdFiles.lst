@@ -1,0 +1,8 @@
+com\backend\App.class
+com\model\ErrorClazz.class
+com\configuration\WebAppConfig.class
+com\dao\UserDaoImpl.class
+com\dao\UserDao.class
+com\model\User.class
+com\configuration\DBConfiguration.class
+com\configuration\WebAppInitializer.class

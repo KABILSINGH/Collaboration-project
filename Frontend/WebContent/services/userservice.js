@@ -19,14 +19,17 @@ app.factory('UserService',function($http)
 	
 	userService.logout=function()
 	{
+		console.log("b4 logged out...")
+
 		return $http.put(BASE_URL +"/logout")
+		console.log("logged out...")
 	}
-	/*userService.getUser=function(){
+	userService.getUser=function(){
 		return $http.get(BASE_URL +"/getuser")
 	}
-	userService.editUserProfile=function(user){
-		return $http.put(BASE_URL +"/edituserprofile",user)
-	}*/
+	userService.updateUser=function(user){
+		return $http.put(BASE_URL +"/updateUser",user)
+	}
 	
 	return userService;
 	})
