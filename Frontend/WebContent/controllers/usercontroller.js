@@ -18,7 +18,7 @@ app.controller('UserController',function($scope,$rootScope,$location,UserService
 		console.log('Usercontroller-->login')
 		console.log($scope.user)
 		UserService.login($scope.user).then(
-				function(response){
+				function(response) {
 			$rootScope.loggedInUser=response.data
 			$cookieStore.put('currentuser',response.data)
 			$location.path('/home'); 
