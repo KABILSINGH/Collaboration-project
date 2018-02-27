@@ -13,6 +13,10 @@ app.factory('JobService',function($http)
 		
 		return $http.get(BASE_URL+ "/alljobs");
 		}
+    JobService.getJob=function(id){
+		
+		return $http.get(BASE_URL+ "/getjob"+id);
+		}
 	
 	 return JobService;
 	})
