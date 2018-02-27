@@ -2,8 +2,8 @@
  * JOBCONTROLLER
  */
 app.controller('JobController',function($scope,$rootScope,$location,JobService){
-	$scope.addJob=function(job){
-		JobService.addJob(job).then(
+	$scope.addJob=function(){
+		JobService.addJob($scope.job).then(
 		function(response){
 			alert('Job details posted successfully....')
 			$location.path('/home');

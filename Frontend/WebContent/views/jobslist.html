@@ -8,10 +8,10 @@
 <div class="container">
    <div  ng-repeat="job in jobs">
    <div class="panel panel-info">
-   <div class="panel-heading"><a href="#/getjob/{{job.id}}">{{job.jobTitle}}</a>   
+   <div class="panel-heading"><a href="#/getjob/{{job.id}}">{{job.jobtitle}}</a>   
    </div>
    <div class="panel-body">
-   <b>Posted On</b>{{job.postedOn | date:'medium'}}<br> <b>Skills Required</b>{{job.skillsRequired}}
+   <b>Posted On->:</b>{{job.postedon | date:'medium'}}<br> <b>SKILLS REQUIRED->:</b>{{job.skillsRequired}}
        </div>
        </div>
          </div>
