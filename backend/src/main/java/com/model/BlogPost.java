@@ -22,11 +22,18 @@ public class BlogPost {
  @ManyToOne
  private User postedBy;
  private int likes;
+ private boolean approved;
 public int getId() {
 	return id;
 }
 public void setId(int id) {
 	this.id = id;
+}
+public boolean isApproved() {
+	return approved;
+}
+public void setApproved(boolean approved) {
+	this.approved = approved;
 }
 public String getBlogTitle() {
 	return blogTitle;
