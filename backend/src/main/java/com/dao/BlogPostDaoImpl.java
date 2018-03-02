@@ -29,5 +29,11 @@ public class BlogPostDaoImpl implements BlogPostDao {
 		List<BlogPost> blogs=query.list();
 		return blogs;
 	}
+	@Override
+	public BlogPost getBlog(int id) {
+		Session session=sessionFactory.getCurrentSession();
+		BlogPost blogPost=(BlogPost)session.get(BlogPost.class, id);
+		return blogPost;
+	}
 
 }

@@ -64,5 +64,15 @@ public ResponseEntity<?>getAllBlogs(@PathVariable int approved,HttpSession sessi
 	List<BlogPost>blogs=blogPostDao.listofBlogs(approved);
 	return new ResponseEntity<List<BlogPost>>(blogs,HttpStatus.OK);
 }
+@RequestMapping(value="/getblog/{id}",method=RequestMethod.GET)
+public ResponseEntity<?>getBlog(@PathVariable int id,HttpSession session){
+	String email=(String)session.getAttribute("currentuser");
+	if(email==null){
+		ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
+		return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+	}
+	BlogPost blogPost=blogPostDao.getBlog(id);
+	return new ResponseEntity<BlogPost>(blogPost,HttpStatus.OK);
+}
 
 }
