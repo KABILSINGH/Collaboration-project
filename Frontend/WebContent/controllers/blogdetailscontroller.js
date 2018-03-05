@@ -14,5 +14,28 @@ app.controller('BlogDetailsCtrl',function($scope,$rootScope,$location,$sce,BlogS
 						$location.path('/login');
 				})
 		
-	
+	$scope.approve=function(blog){
+			BlogService.approve($scope.blog).then(
+					function(response){
+						$location.path('blogsnotapproved')
+					},function(response){
+						$rootScope.error=response.data
+						if(response.status==401)
+							$location.path('/login')
+					})
+		}
+					$scope.reject=function(blog){
+			BlogService.reject($scope.blog,$scope.rejectionReason).then(
+					function(response){
+						$location.path('blogsnotapproved')
+					},function(response){
+						$rootScope.error=response.data
+						if(response.status==401)
+							$location.path('/login')
+					})
+			
+		}
+					$scope.showRejectionTxt=function(){
+						$scope.rejectionTxt=true;
+					}
 		})

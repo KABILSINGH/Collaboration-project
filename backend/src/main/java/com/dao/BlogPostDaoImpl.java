@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.model.BlogPost;
+import com.model.Notification;
 @Repository
 @Transactional
 public class BlogPostDaoImpl implements BlogPostDao {
@@ -34,6 +35,30 @@ public class BlogPostDaoImpl implements BlogPostDao {
 		Session session=sessionFactory.getCurrentSession();
 		BlogPost blogPost=(BlogPost)session.get(BlogPost.class, id);
 		return blogPost;
+	}
+	@Override
+	public void approve(BlogPost blog) {
+		Session session=sessionFactory.getCurrentSession();
+		blog.setApproved(true);
+		session.update(blog);
+		Notification notification=new Notification();
+		notification.setBlogTitle(blog.getBlogTitle());
+		notification.setApprovalStatus("Approved");
+		notification.setEmail(blog.getPostedBy().getEmail());
+		session.save(notification);
+		
+	}
+	@Override
+	public void reject(BlogPost blog,String rejectionReason) {
+		Session session=sessionFactory.getCurrentSession();
+		Notification notification=new Notification();
+		notification.setBlogTitle(blog.getBlogTitle());
+		notification.setApprovalStatus("Rejected");
+		notification.setEmail(blog.getPostedBy().getEmail());
+		notification.setRejectionReason(rejectionReason);
+		session.save(notification);
+		session.delete(blog);
+		
 	}
 
 }
