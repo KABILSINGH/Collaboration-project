@@ -12,7 +12,7 @@ app.factory('NotificationService',function($http){
 		return $http.get(BASE_URL+"/getnotification/"+id)
 	       }
 	notificationService.updateNotification=function(id){
-		return $http.get(BASE_URL+"/updatenotification/"+id)
+		return $http.put(BASE_URL+"/updatenotification/"+id)
 	       }
 	return notificationService;
 })

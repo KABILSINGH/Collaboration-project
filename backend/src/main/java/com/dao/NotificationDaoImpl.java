@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import com.model.Notification;
@@ -24,6 +25,20 @@ private SessionFactory sessionFactory;
 		List<Notification> notificationsNotViewed=query.list();
 		
 		return notificationsNotViewed;
+	}
+	@Override
+	public Notification getNotification(int id) {
+		Session session=sessionFactory.getCurrentSession();
+		Notification notification=(Notification)session.get(Notification.class, id);
+				return notification;
+	}
+	@Override
+	public void updateNotification(int id) {
+	 Session session=sessionFactory.getCurrentSession();
+	 Notification notification=(Notification)session.get(Notification.class, id);
+	 notification.setViewed(true);
+	 session.update(notification);
+		
 	}
 
 }

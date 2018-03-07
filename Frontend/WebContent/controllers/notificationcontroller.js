@@ -23,9 +23,8 @@ app.controller('NotificationCtrl',function($scope,$rootScope,NotificationService
 			if(response.status==401)
 				$location.path('/login');
 		})
-		NotificationService.updateNotification($scope.id).then(
+		NotificationService.updateNotification(id).then(
 				function(response){
-					
 					getNotificationsNotViewed();
 		},function(response){
 			$rootScope.error=response.data
