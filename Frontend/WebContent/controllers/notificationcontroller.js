@@ -1,9 +1,11 @@
 /**
  * 
  */
-app.controller('NotificationCtrl',function($scope,$rootScope,NotificationService,$location){
+app.controller('NotificationCtrl',function($scope,$rootScope,NotificationService,$routeParams,$location){
+	var id=$routeParams.id
 	function getNotificationsNotViewed(){
-		NotificationService.getnotificationNotViewed.then(function(response){
+		NotificationService.getNotificationsNotViewed().then(
+				function(response){
 			$rootScope.notifications=response.data
 			$rootScope.notificationCount=$rootScope.notifications.length
 		},function(response){
@@ -13,7 +15,8 @@ app.controller('NotificationCtrl',function($scope,$rootScope,NotificationService
 		})
 	}
 	if(id!=undefined){
-		NotificationService.getNotification($scope.id).then(function(response){
+		NotificationService.getNotification(id).then(
+				function(response){
 			$scope.notification=response.data
 		},function(response){
 			$rootScope.error=response.data
@@ -23,12 +26,12 @@ app.controller('NotificationCtrl',function($scope,$rootScope,NotificationService
 		NotificationService.updateNotification($scope.id).then(
 				function(response){
 					
-					getNotificationNotViewed();
+					getNotificationsNotViewed();
 		},function(response){
 			$rootScope.error=response.data
 			if(response.status==401)
 				$location.path('/login');
 		})
 	}
-	getNotificationNotViewed()
+	getNotificationsNotViewed()
 })
