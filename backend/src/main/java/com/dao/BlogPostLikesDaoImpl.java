@@ -11,38 +11,35 @@ import org.springframework.stereotype.Repository;
 import com.model.BlogPost;
 import com.model.BlogPostLikes;
 import com.model.User;
+
 @Repository
 @Transactional
 public class BlogPostLikesDaoImpl implements BlogPostLikesDao {
-@Autowired
-private SessionFactory sessionFactory;
-	@Override
+	@Autowired
+	private SessionFactory sessionFactory;
 	public BlogPostLikes hasUserLikedBlog(int blogId, String email) {
 		Session session=sessionFactory.getCurrentSession();
 		Query query=session.createQuery("from BlogPostLikes where blogPost.id=? and user.email=?");
-		query.setInteger(0,blogId);
+		query.setInteger(0, blogId);
 		query.setString(1, email);
 		BlogPostLikes blogPostLikes=(BlogPostLikes)query.uniqueResult();
 		return blogPostLikes;
 	}
-	@Override
-	public BlogPost updateLikes(int id, String email) {
+	public BlogPost updateLikes(int id,String email){
 		Session session=sessionFactory.getCurrentSession();
 		BlogPostLikes blogPostLikes=hasUserLikedBlog(id,email);
 		BlogPost blogPost=(BlogPost)session.get(BlogPost.class, id);
 		if(blogPostLikes==null){
 			blogPostLikes=new BlogPostLikes();
 			User user=(User)session.get(User.class, email);
-			blogPostLikes.setBlogpost(blogPost);
+			blogPostLikes.setBlogPost(blogPost);
 			blogPostLikes.setUser(user);
 			session.save(blogPostLikes);
 			blogPost.setLikes(blogPost.getLikes() + 1);
 			session.update(blogPost);
-		}
-		else
-		{
+		}else{
 			session.delete(blogPostLikes);
-			blogPost.setLikes(blogPost.getLikes()-1);
+			blogPost.setLikes(blogPost.getLikes() - 1);
 			session.update(blogPost);
 		}
 		return blogPost;

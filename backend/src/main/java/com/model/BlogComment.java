@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,15 +10,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="blogpostlikes_s180250")
-public class BlogPostLikes {
+@Table(name="blogcomment_s180250")
+public class BlogComment {
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
 private int id;
 @ManyToOne
 private BlogPost blogPost;
 @ManyToOne
-private User user;
+private User commentedBy;
+private Date commentedOn;
+private String commentTxt;
 public int getId() {
 	return id;
 }
@@ -29,11 +33,23 @@ public BlogPost getBlogPost() {
 public void setBlogPost(BlogPost blogPost) {
 	this.blogPost = blogPost;
 }
-public User getUser() {
-	return user;
+public User getCommentedBy() {
+	return commentedBy;
 }
-public void setUser(User user) {
-	this.user = user;
+public void setCommentedBy(User commentedBy) {
+	this.commentedBy = commentedBy;
+}
+public Date getCommentedOn() {
+	return commentedOn;
+}
+public void setCommentedOn(Date commentedOn) {
+	this.commentedOn = commentedOn;
+}
+public String getCommentTxt() {
+	return commentTxt;
+}
+public void setCommentTxt(String commentTxt) {
+	this.commentTxt = commentTxt;
 }
 
 }

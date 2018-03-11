@@ -21,7 +21,6 @@ app.factory('BlogService',function($http){
 	}
 	blogService.hasUserLikedBlog=function(id){
 		return $http.get(BASE_URL+"/hasuserlikedblog/"+id)
-		
 	}
 	blogService.approve=function(blog){
 		return $http.put(BASE_URL+"/approve",blog)
@@ -32,8 +31,12 @@ app.factory('BlogService',function($http){
 	blogService.updateLikes=function(id){
 		return $http.put(BASE_URL+"/updatelikes/"+id)
 	}
-		
-	
+	blogService.addComment=function(blogComment){
+		return $http.get(BASE_URL+"/addcomment",blogComment)
+	}
+	blogService.getBlogComments=function(id){
+		return $http.get(BASE_URL+"/blogcomments/"+id)
+	}
 	
 	return blogService;
 	

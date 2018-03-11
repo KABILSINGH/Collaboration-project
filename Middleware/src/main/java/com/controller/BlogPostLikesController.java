@@ -17,29 +17,27 @@ import com.model.ErrorClazz;
 
 @Controller
 public class BlogPostLikesController {
-@Autowired
-private BlogPostLikesDao blogPostLikesDao;
-@RequestMapping(value="/hasuserlikedblog/{blogId}",method=RequestMethod.GET)
-public ResponseEntity<?> hasUserLikedBlog(@PathVariable int blogId,HttpSession session)
-{
-	String email=(String)session.getAttribute("currentuser");
-	if(email==null){
-		ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
-		return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+	@Autowired
+	private BlogPostLikesDao blogPostLikesDao;
+	@RequestMapping(value="/hasuserlikedblog/{blogId}",method=RequestMethod.GET)
+	public ResponseEntity<?> hasUserLikedBlog(@PathVariable int blogId,HttpSession session){
+		String email=(String)session.getAttribute("currentuser");
+		if(email==null){
+			ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+		}
+		BlogPostLikes blogPostLikes=blogPostLikesDao.hasUserLikedBlog(blogId, email);
+		return new ResponseEntity<BlogPostLikes>(blogPostLikes,HttpStatus.OK);
 	}
-
-	BlogPostLikes blogPostLikes=blogPostLikesDao.hasUserLikedBlog(blogId, email);
-	return new ResponseEntity<BlogPostLikes>(blogPostLikes,HttpStatus.OK);
-}
-@RequestMapping(value="/updatelikes/{id}",method=RequestMethod.PUT)
-public ResponseEntity<?>updateLikes(@PathVariable int id,HttpSession session){
-	String email=(String)session.getAttribute("currentuser");
-	if(email==null){
-		ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
-		return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+	@RequestMapping(value="/updatelikes/{id}",method=RequestMethod.PUT)
+	public ResponseEntity<?> updateLikes(@PathVariable int id,HttpSession session){
+		String email=(String)session.getAttribute("currentuser");
+		if(email==null){
+			ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+		}
+		BlogPost blogPost=blogPostLikesDao.updateLikes(id, email);
+		return new ResponseEntity<BlogPost>(blogPost,HttpStatus.OK);
 	}
-	BlogPost blogPost=blogPostLikesDao.updateLikes(id,email);
-	return new ResponseEntity<BlogPost>(blogPost,HttpStatus.OK);
-}
 
 }
