@@ -82,11 +82,12 @@ app.controller('BlogDetailsCtrl',function($scope,$rootScope,$location,$sce,BlogS
 					function getBlogComments(id){
 						BlogService.getBlogComments(id).then(function(response){
 							$scope.comments=response.data
-						},function(response){
+						},
+								function(response){
 							$rootScope.error=response.data
 							if(response.status==401)
 								$location.path('/login')
 						})
 					}
-					getBlogComments(id)
+
 		})

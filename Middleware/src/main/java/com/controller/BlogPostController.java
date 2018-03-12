@@ -105,9 +105,8 @@ public ResponseEntity<?>reject(@RequestBody BlogPost blog,@PathVariable String r
 	blogPostDao.reject(blog,rejectionReason);
 	return new ResponseEntity<Void>(HttpStatus.OK);
 }
-@RequestMapping(value="/addcomment",method=RequestMethod.GET)
-public ResponseEntity<?>addBlogComment(@RequestBody BlogComment blogComment,HttpSession session)
-{
+@RequestMapping(value="/addcomment", method=RequestMethod.POST)
+public ResponseEntity<?> addBlogComment(@RequestBody BlogComment blogComment,HttpSession session){
 	String email=(String)session.getAttribute("currentuser");
 	if(email==null){
 		ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
@@ -116,23 +115,22 @@ public ResponseEntity<?>addBlogComment(@RequestBody BlogComment blogComment,Http
 	User commentedBy=userDao.getUser(email);
 	blogComment.setCommentedOn(new Date());
 	blogComment.setCommentedBy(commentedBy);
-	
 	try{
 		blogPostDao.addBlogComment(blogComment);
-	} catch(Exception e){
-		ErrorClazz error=new ErrorClazz(6,"Unable to postcomment" +e.getMessage());
+	}catch(Exception e){
+		ErrorClazz error=new ErrorClazz(6,"Unable to post comment"+e.getMessage());
 		return new ResponseEntity<ErrorClazz>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	return new ResponseEntity<BlogComment>(blogComment,HttpStatus.OK);
-	}
+}
 @RequestMapping(value="/blogcomments/{blogPostId}",method=RequestMethod.GET)
-public ResponseEntity<?>getAllBlogComments(@PathVariable int blogPostId,HttpSession session){
+public ResponseEntity<?> getAllBlogComments(@PathVariable int blogPostId,HttpSession session){
 	String email=(String)session.getAttribute("currentuser");
 	if(email==null){
 		ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
 		return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
 	}
-	List<BlogComment> blogcomments=blogPostDao.getAllBlogComments(blogPostId);
-	return new ResponseEntity<List<BlogComment>>(blogcomments,HttpStatus.OK);
+	List<BlogComment> blogComments=blogPostDao.getAllBlogComments(blogPostId);
+	return new ResponseEntity<List<BlogComment>>(blogComments,HttpStatus.OK);
 }
 }
