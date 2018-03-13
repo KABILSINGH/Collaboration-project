@@ -40,6 +40,9 @@ app.config(function($routeProvider){
 		templateUrl:'views/blogsapproved.html',
 		controller:'BlogCtrl'
 	} )
+	.when('uploadprofilepic',{
+		templateUrl:'views/uploadprofilepic.html'
+	})
 	.when('/getblog/:id',{
 		templateUrl:'views/blogdetails.html',
 		controller:'BlogDetailsCtrl'

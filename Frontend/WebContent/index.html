@@ -3,20 +3,30 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+     
+   
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    
+  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
 <link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet">
-	<link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
 	rel="stylesheet" />
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.js"></script>
+	  
+	
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	  
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+
 	<link href="resources/css/login.css" rel="stylesheet">
 	<link href="resources/css/notification.css" rel="stylesheet">
 	
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	type="text/javascript"></script>
 </head>
 <header>
 <body ng-app="app">
@@ -52,6 +62,8 @@
 	<li> <a href="#/blogsnotapproved"  ng-show="loggedInUser.role=='ADMIN'"  >Blogs Waiting for approval </a></li>
 	<li> <a href="#/blogsapproved"  > Blogs </a></li>
 	</ul></li>
+	<li><a href="#/uploadprofilepic">
+	<img src="http://localhost:9090/Middleware/getimage/{{loggedInUser.email}}" alt="Upload ProfilePic" width="30px" height="30px" class="img-rounded"></a> </li>
 	<li class="dropdown">
 	<a href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="loggedInUser.firstname">
 	<span class="glyphicon glyphicon-globe">
