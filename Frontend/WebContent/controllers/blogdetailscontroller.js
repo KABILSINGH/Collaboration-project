@@ -4,7 +4,7 @@
 app.controller('BlogDetailsCtrl',function($scope,$rootScope,$location,$sce,BlogService,$routeParams)
 		{ var id=$routeParams.id; 
 		  $scope.rejectionTxt=false;
-		  $scope.showComments=false;
+		 /* $scope.showComments=false;*/
 		
 		BlogService.getBlog(id).then(
 				function(response){
@@ -91,8 +91,8 @@ app.controller('BlogDetailsCtrl',function($scope,$rootScope,$location,$sce,BlogS
 								$location.path('/login')
 						})
 					}
-           $scope.OnShowComments=function(){
+          /* $scope.OnShowComments=function(){
         	   $scope.showComments=!$scope.showComments;
-           }
+           }*/
            getBlogComments(id)
 		})
