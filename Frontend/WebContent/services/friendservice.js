@@ -5,5 +5,14 @@ app.factory('FriendService',function($http){
 		{
 				return $http.get(BASE_URL +"/suggestedusers");
 	}
+	friendService.addFriend=function(toId)
+	{ console.log(toId)
+		return $http.post(BASE_URL +"/addfriend", toId );
+	}
+	friendService.getPendingRequests=function()
+	{  
+		return $http.get(BASE_URL +"/pendingrequests");
+	}
+	
 	return friendService;
 })
