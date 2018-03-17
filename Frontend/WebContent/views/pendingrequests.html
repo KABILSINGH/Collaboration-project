@@ -9,6 +9,7 @@
 <div class="panel-heading">
 <b>Friend Request</b>
 </div>
+<span ng-if="pendingRequests.length==0"><b>No Pending Request</b></span>
 <div class="panel-body">
 <ul style="list-style:none">
 <li ng-repeat="request in pendingRequests">
@@ -17,8 +18,9 @@
 <b>{{request.fromId.phonenumber}}</b><br>
 <img src="http://localhost:9090/Middleware/getimage/{{request.fromId.email}}" alt="No Image" width="50px" height="50px">
 <br>
-<button type="button" class="btn btn-primary">Accept</button>
-<button type="button" class="btn btn-warning">Delete</button>
+<br>
+<button type="button" class="btn btn-primary" ng-click="acceptRequest(request)">Accept</button>
+<button type="button" class="btn btn-warning" ng-click="deleteRequest(request)">Delete</button>
 </div>
 </div>
 </body>

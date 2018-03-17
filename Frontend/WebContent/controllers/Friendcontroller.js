@@ -35,6 +35,25 @@ app.controller('FriendCtrl',function($scope,$rootScope,$location,FriendService){
 		}		
 		)
 	}
+	$scope.acceptRequest=function(request){
+		FriendService.acceptRequest(request).then(
+				function(response){
+			getPendingRequests()
+		},function(response){
+			$rootScope.error=response.data
+			if(response.status==401)
+				$location.path('/login')
+		})
+	}
+	$scope.deleteRequest=function(request){
+		FriendService.deleteRequest(request).then(function(response){
+			getPendingRequests()
+		},function(response){
+			$rootScope.error=response.data
+			if(response.status==401)
+				$location.path('/login')
+		})
+	}
 	getAllSuggestedUsers()
 	getPendingRequests()
 })

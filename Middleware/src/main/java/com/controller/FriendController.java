@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,5 +60,25 @@ public ResponseEntity<?>pendingRequests(HttpSession session){
 	}
 	List<Friend>pendingRequests=friendDao.pendingRequests(email);
 	return new ResponseEntity<List<Friend>>(pendingRequests,HttpStatus.OK);
+}
+@RequestMapping(value="/acceptrequest",method=RequestMethod.PUT)
+public ResponseEntity<?>acceptRequest(@RequestBody Friend request,HttpSession session){
+	String email=(String)session.getAttribute("currentuser");
+	if(email==null){
+		ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
+		return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+	}
+	friendDao.acceptRequest(request);
+	return new ResponseEntity<Void>(HttpStatus.OK);
+}
+@RequestMapping(value="/deleterequest",method=RequestMethod.PUT)
+public ResponseEntity<?>deleteRequest(@RequestBody Friend request,HttpSession session){
+	String email=(String)session.getAttribute("currentuser");
+	if(email==null){
+		ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
+		return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+	}
+	friendDao.deleteRequest(request);
+	return new ResponseEntity<Void>(HttpStatus.OK);
 }
 }

@@ -50,5 +50,33 @@ private SessionFactory sessionFactory;
 		List<Friend>pendingRequests=query.list();
 		return pendingRequests;
 	}
+	@Override
+	public void acceptRequest(Friend request) {
+		Session session=sessionFactory.getCurrentSession();
+		request.setStatus('A');
+		session.update(request);
+		
+	}
+	@Override
+	public void deleteRequest(Friend request) {
+	 Session session=sessionFactory.getCurrentSession();
+	 session.delete(request);
+		
+	}
+	@Override
+	public List<Friend> listofFriends(String email) {
+		Session session=sessionFactory.getCurrentSession();
+		Query query1=session.createQuery("select f.toId from friend f where f.fromId.email=? and f.status=?");
+		query1.setString(0, email);
+		query1.setCharacter(1, 'A');
+		List<Friend>friendsList1=query1.list();
+		Query query2=session.createQuery("select f.fromId from Friend f where f.toId.email=? and f.status=?");
+		query2.setString(0,email);
+		query2.setCharacter(1, 'A');
+		List<Friend>friendsList2=query2.list();
+		friendsList1.addAll(friendsList2);
+		return friendsList1;
+		
+	}
 
 }
