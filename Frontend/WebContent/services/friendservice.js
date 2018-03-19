@@ -21,6 +21,9 @@ app.factory('FriendService',function($http){
 	{
 		return $http.put(BASE_URL +"/deleterequest",request)
 	}
+	friendService.getAllFriends=function(){
+		return $http.get(BASE_URL +"/friends");
+	}
 	
 	return friendService;
 })

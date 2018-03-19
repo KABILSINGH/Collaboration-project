@@ -54,6 +54,13 @@ app.controller('FriendCtrl',function($scope,$rootScope,$location,FriendService){
 				$location.path('/login')
 		})
 	}
+	FriendService.getAllFriends().then(function(response){
+		$scope.friends=response.data
+	},function(response){
+		$rootScope.error=response.data
+		if(response.status==401)
+			$location.path('/login')
+	})
 	getAllSuggestedUsers()
 	getPendingRequests()
 })

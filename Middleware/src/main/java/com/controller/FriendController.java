@@ -81,4 +81,15 @@ public ResponseEntity<?>deleteRequest(@RequestBody Friend request,HttpSession se
 	friendDao.deleteRequest(request);
 	return new ResponseEntity<Void>(HttpStatus.OK);
 }
+@RequestMapping(value="/friends",method=RequestMethod.GET)
+public ResponseEntity<?>getAllFriends(HttpSession session)
+{
+	String email=(String)session.getAttribute("currentuser");
+	if(email==null){
+		ErrorClazz error=new ErrorClazz(5,"Unauthorised access....");
+		return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
+	}
+	List<Friend>friends=friendDao.listofFriends(email);
+	return new ResponseEntity<List<Friend>>(friends,HttpStatus.OK);
+}
 }
