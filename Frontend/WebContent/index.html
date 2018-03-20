@@ -79,7 +79,8 @@
 		</span>
 		</ul>
 		</li>	
-	<li><a href='#' ng-show="loggedInUser.firstname!=undefined">WELCOME! {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
+		<li><a href="#/chat">Chat</a></li>
+	<li><a href="#" ng-show="loggedInUser.firstname!=undefined">WELCOME! {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
 	<li><a href="" ng-click="logout()" ng-show="loggedInUser.firstname!=undefined">Logout</a></li>
 	
 		
@@ -109,6 +110,8 @@
 <script type="text/javascript" src="controllers/notificationcontroller.js"></script>
 <script type="text/javascript" src="services/friendservice.js"></script>
 <script type="text/javascript" src="controllers/Friendcontroller.js"></script>
+<script type="text/javascript" src="services/chatservice.js"></script>
+<script type="text/javascript" src="controllers/chatcontroller.js"></script>
 
 </html>
 	

@@ -66,7 +66,7 @@ private SessionFactory sessionFactory;
 	@Override
 	public List<Friend> listofFriends(String email) {
 		Session session=sessionFactory.getCurrentSession();
-		Query query1=session.createQuery("select f.toId from friend f where f.fromId.email=? and f.status=?");
+		Query query1=session.createQuery("select f.toId from Friend f where f.fromId.email=? and f.status=?");
 		query1.setString(0, email);
 		query1.setCharacter(1, 'A');
 		List<Friend>friendsList1=query1.list();
