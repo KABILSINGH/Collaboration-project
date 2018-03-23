@@ -74,13 +74,17 @@ app.config(function($routeProvider){
 	.when('/chat',{
 		templateUrl:'views/chat.html',
 		controller:'ChatCtrl'
-	} )
+	})
+	.when('/searchuser',{
+		templateUrl:'views/users.html',
+		controller:'UserController'
+	})
 	.otherwise({
 		templateUrl:'views/home.html',
 		controller:'NotificationCtrl'	
 	})
 } )
-app.run(function($location,$rootScope,$cookieStore,UserService){
+app.run(function($location,$rootScope,$cookieStore,UserService,NotificationService){
 	
 	if($rootScope.loggedInUser==undefined)
 	    $rootScope.loggedInUser=$cookieStore.get('currentuser')
@@ -102,4 +106,16 @@ app.run(function($location,$rootScope,$cookieStore,UserService){
 		})
 
 	}
+	function getNotificationsNotViewed(){
+		NotificationService.getNotificationsNotViewed().then(
+				function(response){
+			$rootScope.notifications=response.data
+			$rootScope.notificationCount=$rootScope.notifications.length
+		},function(response){
+			$rootScope.error=response.data
+			if(response.status==401)
+				$location.path('/login');
+		})
+	}
+	getNotificationsNotViewed();
 })

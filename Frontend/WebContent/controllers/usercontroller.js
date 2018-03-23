@@ -52,4 +52,14 @@ app.controller('UserController',function($scope,$rootScope,$location,UserService
 				$scope.error=response.data
 		})
 	}
+	$rootScope.searchUser=function(user){
+		console.log(user)
+		UserService.searchUser(user).then(function(){
+			console.log(users)
+			$scope.users=response.data
+		},function(response){
+			$scope.error=response.data
+			$location.path('/login')
+		})
+	}
 })

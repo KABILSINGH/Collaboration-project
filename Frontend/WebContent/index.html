@@ -79,7 +79,23 @@
 		</span>
 		</ul>
 		</li>	
-		<li><a href="#/chat">Chat</a></li>
+		<li><a href="#/chat" ng-show="loggedInUser.firstname">Chat </a></li>
+		<form class="navbar-form navbar-left" >
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search" name="search" ng-model="user" >
+					<div class="input-group-btn">
+					<a href="#/searchuser"  class="btn btn-default" type="submit" ng-click="searchUser(user)">
+						<i class="glyphicon glyphicon-search"></i></a>
+					</div>
+				</div>
+			</form>
+		
+		<!-- <div class ="navbar buttons">
+		<input type="text" placeholder="search user" class="navbar search" ng-model="user">
+		<a href="#/searchuser" class="btn navbar-btn btn-primary pull-right" type="button" ng-click="searchUser(user)">
+		<i class ="fa fa-search"></i></a>
+		</div> -->
+		
 	<li><a href="#" ng-show="loggedInUser.firstname!=undefined">WELCOME! {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
 	<li><a href="" ng-click="logout()" ng-show="loggedInUser.firstname!=undefined">Logout</a></li>
 	
@@ -112,6 +128,7 @@
 <script type="text/javascript" src="controllers/Friendcontroller.js"></script>
 <script type="text/javascript" src="services/chatservice.js"></script>
 <script type="text/javascript" src="controllers/chatcontroller.js"></script>
-
+<script type="text/javascript" src="js/sockjs/sockjs.min.js"></script>
+	<script type="text/javascript" src="js/stomp/dist/stomp.min.js"></script>
 </html>
 	
