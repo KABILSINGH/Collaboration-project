@@ -32,7 +32,7 @@ app.controller('ChatCtrl',  function($rootScope ,$scope, ChatService) {
 
     $scope.sendMessage = function(chat) {
         chat.from = $scope.userName;
-      
+       console.log($scope.userName)
         $scope.stompClient.send("/app/chat", {}, JSON.stringify(chat));
         $rootScope.$broadcast('sendingChat', chat);
         $scope.chat.message = '';
@@ -49,7 +49,7 @@ app.controller('ChatCtrl',  function($rootScope ,$scope, ChatService) {
     };
      
     $scope.$on('sockConnected', function(event, frame) {
-        $scope.userName=$rootScope.loggedInUser.username;
+        $scope.userName=$rootScope.loggedInUser.firstname;
   
         $scope.user=$rootScope.loggedInUser.firstname;
        
