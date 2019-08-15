@@ -1,15 +1,11 @@
 package com.dao;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.model.User;
 @Repository
 @Transactional
@@ -33,7 +29,6 @@ private SessionFactory sessionFactory;
 	}
 	@Override
 	public User login(User user) {
-	
 		Session session=sessionFactory.getCurrentSession();
 		Query query=session.createQuery("from User where email=? and password=?");
 		query.setString(0, user.getEmail());
@@ -59,7 +54,7 @@ private SessionFactory sessionFactory;
 		session.update(user);
 		return null;
 	}
-	@Override
+	/*@Override
 	public List<User> searchUser(String name) {
 		System.out.println(name);
 		Session session=sessionFactory.getCurrentSession();
@@ -70,7 +65,7 @@ private SessionFactory sessionFactory;
 		List<User>users=query.list();
 		return users;
 	}
-	
+	*/
 	
 
 }

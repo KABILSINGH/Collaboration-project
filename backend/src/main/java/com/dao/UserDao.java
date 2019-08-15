@@ -11,5 +11,5 @@ User login(User user);
 void update(User validUser);
 User getUser(String email);
 Void updateUser(User user);
-List<User>searchUser(String name);
+/*List<User>searchUser(String name);*/
 }

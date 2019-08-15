@@ -30,10 +30,10 @@ app.factory('UserService',function($http)
 	userService.updateUser=function(user){
 		return $http.put(BASE_URL +"/updateUser",user)
 	}
-	userService.searchUser=function(user){
+	/*userService.searchUser=function(user){
 		console.log("searchuser..")
 		return $http.get(BASE_URL +"/searchuser/"+user)
-	}
+	}*/
 	
 	return userService;
 	})

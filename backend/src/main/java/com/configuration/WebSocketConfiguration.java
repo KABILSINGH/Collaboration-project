@@ -19,7 +19,6 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @ComponentScan(basePackages="com")
 public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
-	@Override
 	public void configureClientInboundChannel(ChannelRegistration  registration) {
 		// TODO Auto-generated method stub
 		

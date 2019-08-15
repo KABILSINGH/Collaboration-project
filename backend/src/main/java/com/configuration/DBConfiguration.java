@@ -20,7 +20,6 @@ import com.model.Job;
 import com.model.Notification;
 import com.model.ProfilePicture;
 import com.model.User;
-
 @Configuration
 @EnableTransactionManagement
 public class DBConfiguration {
@@ -29,11 +28,9 @@ public class DBConfiguration {
   }
   @Bean
 	public SessionFactory sessionFactory() {
-		LocalSessionFactoryBuilder lsf=
-				new LocalSessionFactoryBuilder(getDataSource());
+		LocalSessionFactoryBuilder lsf = new LocalSessionFactoryBuilder(getDataSource());
 		Properties hibernateProperties=new Properties();
-		hibernateProperties.setProperty(
-				"hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		lsf.addProperties(hibernateProperties);
@@ -46,10 +43,9 @@ public class DBConfiguration {
 	    dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
 	    dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 	    dataSource.setUsername("KABIL");
-	    dataSource.setPassword("kabil1996");
+	    dataSource.setPassword("KABIL");
 	    return dataSource;
-	    
-	}
+	  	}
 	@Bean
 	public HibernateTransactionManager hibTransManagement(){
 		return new HibernateTransactionManager(sessionFactory());

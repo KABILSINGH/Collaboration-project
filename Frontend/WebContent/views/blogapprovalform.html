@@ -9,19 +9,20 @@
 <div class="panel-heading">
 <a>{{blog.blogTitle}}</a>
 <b>Posted On:</b> {{blog.postedon | date:'medium'}}</br>
-<b>Posted By:</b>{{blog.postedBy.firstname}} &nbsp {{blog.postedBy.lastname}}
+<b>Posted By:</b> {{blog.postedBy.firstname}} &nbsp {{blog.postedBy.lastname}}
 </div>
 <div class="panel-body">
 <p ng-bind-html="content"></p>
 </div>
 </div>
 <button type="button" class="btn btn-primary" ng-click="approve(blog)" ng-hide="rejectionTxt">Approve</button> 
+</t>
 <button type="button" class="btn btn-warning" ng-click="showRejectionTxt()" ng-hide="rejectionTxt">Reject</button> 
 <div ng-show="rejectionTxt">
-Rejection Reason<br>
+Rejection Reason <br>
 <textarea ng-model="rejectionReason"></textarea>
 <button type="button" class="btn btn-warning" ng-click="reject(blog)">Submit</button>
+<button type="button" ng-click="redirect()" class="btn btn-primary ">Cancel</button>
 </div>
-
 </body>
 </html>

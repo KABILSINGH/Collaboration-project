@@ -88,7 +88,7 @@ app.run(function($location,$rootScope,$cookieStore,UserService,NotificationServi
 	
 	if($rootScope.loggedInUser==undefined)
 	    $rootScope.loggedInUser=$cookieStore.get('currentuser')
-	    
+	   
 	 $rootScope.logout=function()
 	{
 		console.log("logout function")

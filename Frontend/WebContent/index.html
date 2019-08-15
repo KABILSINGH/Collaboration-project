@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>ChatMini</title>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link
@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
       </button>
 		<div class="navbar-header">
-        <a class="navbar-brand" ><img src="resources/images/niit.png" alt="NIIT" height="30px" width="30px"></a>
+        <a class="navbar-brand" ><img src="resources/images/logo.jpg" alt="logo" height="30px" width="50px"></a>
 			</div>
 			<div  class="collapse navbar-collapse" id="collapse-example">
 		<ul class="nav navbar-nav">
@@ -80,7 +80,7 @@
 		</ul>
 		</li>	
 		<li><a href="#/chat" ng-show="loggedInUser.firstname">Chat </a></li>
-		<form class="navbar-form navbar-left" >
+		<!-- <form class="navbar-form navbar-left" >
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search" name="search" ng-model="user" >
 					<div class="input-group-btn">
@@ -88,13 +88,9 @@
 						<i class="glyphicon glyphicon-search"></i></a>
 					</div>
 				</div>
-			</form>
+			</form> -->
 		
-		<!-- <div class ="navbar buttons">
-		<input type="text" placeholder="search user" class="navbar search" ng-model="user">
-		<a href="#/searchuser" class="btn navbar-btn btn-primary pull-right" type="button" ng-click="searchUser(user)">
-		<i class ="fa fa-search"></i></a>
-		</div> -->
+		
 		
 	<li><a href="#" ng-show="loggedInUser.firstname!=undefined">WELCOME! {{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
 	<li><a href="" ng-click="logout()" ng-show="loggedInUser.firstname!=undefined">Logout</a></li>
