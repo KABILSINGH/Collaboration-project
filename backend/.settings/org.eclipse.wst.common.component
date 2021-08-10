@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="backend">
+        <wb-resource deploy-path="/" source-path="/src/main/java"/>
+        <dependent-module archiveName="Middleware.war" deploy-path="/" handle="module:/resource/Middleware/Middleware">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Frontend.war" deploy-path="/" handle="module:/resource/Frontend/Frontend">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

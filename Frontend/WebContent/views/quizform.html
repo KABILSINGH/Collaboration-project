@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Quiz Form</title>
+</head>
+<body>
+ <div class="container">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8">
+			<h2 class="form-signin-heading text-center">Add Quiz Details</h2>
+			<br/>
+			<form name='quizform'  class="form-signin">	
+			<span style="color:red" ng-if="error.code==6">{{error.message}}</span>
+				<div class="form-group">
+					<label >Quiz Name</label>
+			        <input name="name" class="form-control" placeholder="Enter Quiz Name" required="true" ng-model="quiz.quizName" autofocus="true" />
+			        <br/>
+			        <label>Description</label>
+			        <textarea  name="description" class="form-control" placeholder="Enter Quiz Description" ng-model="quiz.quizDescription" rows="5" > </textarea>
+			        <br/>
+			        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="addQuiz()">Save</button>
+		        </div>
+			</form>
+		</div>
+		<div class="col-sm-2"></div>
+	</div>
+</body>
+</html>
